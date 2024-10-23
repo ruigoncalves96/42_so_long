@@ -6,10 +6,12 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:15:50 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/16 18:17:37 by randrade         ###   ########.fr       */
+/*   Updated: 2024/10/22 15:04:06 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "./Library/libft/libft.h"
 # include "./Library/ft_printf/ft_printf.h"
-# include "./minilibx/minilibx.h"
+# include "./mlx/mlx.h"
+
+
