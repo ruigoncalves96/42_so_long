@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:15:50 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/24 17:36:53 by randrade         ###   ########.fr       */
+/*   Updated: 2024/10/26 14:57:39 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,22 @@
 
 typedef struct	s_map_info
 {
-	int	size;
-	int	floor;
-	int	wall;
-	int	collectible;
-	int	exit;
-	int	player;
+	unsigned int	size[2];
+	unsigned int	wall;
+	unsigned int	floor;
+	unsigned int	player;
+	unsigned int	collectible;
+	unsigned int	exit;
 }		t_map_info;
 
 typedef struct	s_coord
 {
-	int	x;
-	int	y;
+	unsigned int	x;
+	unsigned int	y;
 }		t_coord;
 
 //	PARSING
-bool	ft_check_file(const char *file);
+bool	ft_is_file_readble(const char *file);
 bool	ft_map_parsing(const char *map);
 
 #endif
