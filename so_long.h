@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:15:50 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/26 14:57:39 by randrade         ###   ########.fr       */
+/*   Updated: 2024/10/26 18:34:36 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 typedef struct	s_map_info
 {
-	unsigned int	size[2];
+	unsigned int	size_xy[2];
 	unsigned int	wall;
 	unsigned int	floor;
 	unsigned int	player;
