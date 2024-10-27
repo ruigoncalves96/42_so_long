@@ -9,12 +9,19 @@ LIBFT_PATH = ./Library
 LIBFT = $(LIBFT_PATH)/libft.a
 
 SRC_PATH = ./src
+OBJ_PATH = $(SRC_PATH)/obj
 
-SRC = $(SRC_PATH)/so_long.c $(SRC_PATH)/check_file.c $(SRC_PATH)/map_parsing.c
-OBJ = $(SRC_PATH)/so_long.o $(SRC_PATH)/check_file.o $(SRC_PATH)/map_parsing.o
+SRC = $(addprefix $(SRC_PATH)/, so_long.c, check_file.c, alloc_map.c, map_parsing.c, utils.c)
+OBJ = $(addprefix $(SRC_PATH)/, $(SRC:.c=.o))
 
 # --- Basic compilation ---
-%.o: %.c
+
+all: $(NAME)
+
+$(OBJ_PATH):
+	mkdir -p $(OBJ_PATH)
+
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(LIBFT) $(OBJ)

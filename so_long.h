@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:15:50 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/26 18:34:36 by randrade         ###   ########.fr       */
+/*   Updated: 2024/10/27 12:41:56 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,18 @@ typedef struct	s_coord
 	unsigned int	y;
 }		t_coord;
 
-//	PARSING
+//	UTILS
+void	ft_initialize_t_map_info(t_map_info *map_info);
+void	ft_print_array(char **str);
+void	ft_free_array(char **str);
+
+//	CHECK_FILE
 bool	ft_is_file_readble(const char *file);
+
+//	ALLOC_MAP
+char	**ft_alloc_map_array(const char *map, t_map_info *map_info);
+
+//	MAP_PARSING
 bool	ft_map_parsing(const char *map);
 
 #endif
