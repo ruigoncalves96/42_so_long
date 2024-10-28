@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:11:31 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/28 14:31:27 by randrade         ###   ########.fr       */
+/*   Updated: 2024/10/28 16:28:06 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ static char	*ft_copy_line(int fd)
 
 static unsigned int	ft_paragraph_len(const char *map)
 {
-	int	fd;
-	int	len;
 	char	*str;
+	int		fd;
+	int		len;
 
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 		ft_perror_exit();
 	str = get_next_line(fd);
 	if (!str)
-		ft_fderror_exit("Error\nDescription: Empty file!\n");
+		ft_fderror_exit(EMPTY_M);
 	len = 1;
 	while (str)
 	{
@@ -49,9 +49,9 @@ static unsigned int	ft_paragraph_len(const char *map)
 
 char	**ft_alloc_map_array(const char *map, t_map_info *map_info)
 {
+	char		**ptr;
 	unsigned int	i;
-	int	fd;
-	char	**ptr;
+	int			fd;
 
 	map_info->size_y = ft_paragraph_len(map);
 	ptr = ft_calloc(map_info->size_y + 1, sizeof(char *));

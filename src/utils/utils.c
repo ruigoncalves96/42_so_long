@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:11:31 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/28 14:31:38 by randrade         ###   ########.fr       */
+/*   Updated: 2024/10/28 16:17:08 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 char	**ft_array_dup(const char **map, t_map_info *map_info)
 {
 	char	**copy_map;
-	int	y;
+	int		y;
 
 	y = 0;
 	copy_map = calloc((map_info->size_y + 1), sizeof(char *));
 	if (!copy_map)
-		return(NULL);
+		return (NULL);
 	while (map[y])
 	{
 		copy_map[y] = ft_strdup(map[y]);

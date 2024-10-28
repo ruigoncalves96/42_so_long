@@ -6,13 +6,13 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:11:31 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/28 14:31:44 by randrade         ###   ########.fr       */
+/*   Updated: 2024/10/28 16:19:29 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-bool	ft_is_winnable(const char **map)
+bool	ft_can_reach_exit(const char **map)
 {
 	int	y;
 	int	x;
@@ -24,11 +24,9 @@ bool	ft_is_winnable(const char **map)
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] == 'C')
-				return (false);
-			else if (map[y][x] == 'E')
+			if (map[y][x] == 'E')
 			{
-				if (map[y + 1][x] != 'F' && map[y - 1][x] != 'F' && 
+				if (map[y + 1][x] != 'F' && map[y - 1][x] != 'F' &&
 					map[y][x + 1] != 'F' && map[y][x - 1] != 'F')
 					return (false);
 			}
@@ -39,31 +37,40 @@ bool	ft_is_winnable(const char **map)
 	return (true);
 }
 
-void	ft_flood_fill(char **map, t_map_info *map_info, unsigned int x, unsigned int y)
+unsigned int	ft_flood_fill(char **map, t_map_info *map_info,
+					unsigned int y, unsigned int x)
 {
-	if (x >= map_info->size_x || x < 0 || y >= map_info->size_y || y < 0 || (map[y][x] != '0' && map[y][x] != 'C' && map[y][x] != 'P'))
-		return ;
+	unsigned int	collectibles;
+
+	collectibles = 0;
+	if (x >= map_info->size_x || x < 0 || y >= map_info->size_y || y < 0
+		|| (map[y][x] != '0' && map[y][x] != 'C' && map[y][x] != 'P'))
+		return (collectibles);
+	if (map[y][x] == 'C')
+		collectibles++;
 	map[y][x] = 'F';
-	ft_flood_fill(map, map_info, x, y + 1);
-	ft_flood_fill(map, map_info, x, y - 1);
-	ft_flood_fill(map, map_info, x + 1, y);
-	ft_flood_fill(map, map_info, x - 1, y);
+	collectibles += ft_flood_fill(map, map_info, y + 1, x);
+	collectibles += ft_flood_fill(map, map_info, y - 1, x);
+	collectibles += ft_flood_fill(map, map_info, y, x + 1);
+	collectibles += ft_flood_fill(map, map_info, y, x - 1);
+	return (collectibles);
 }
 
-bool	ft_count_content(char content, t_map_info *map_info, unsigned int x, unsigned int y)
+bool	ft_count_content(char content, t_map_info *map_info,
+					unsigned int y, unsigned int x)
 {
 	if (content == '0')
-		map_info->floor++;
+		map_info->floors++;
 	else if (content == '1')
-		map_info->wall++;
+		map_info->walls++;
 	else if (content == 'P')
 	{
 		map_info->player++;
-		map_info->player_coord.x = x;
 		map_info->player_coord.y = y;
+		map_info->player_coord.x = x;
 	}
 	else if (content == 'C')
-		map_info->collectible++;
+		map_info->collectibles++;
 	else if (content == 'E')
 		map_info->exit++;
 	else
