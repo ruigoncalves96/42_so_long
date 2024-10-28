@@ -6,11 +6,11 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:34:07 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/26 12:55:01 by randrade         ###   ########.fr       */
+/*   Updated: 2024/10/28 14:31:21 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 
 static bool	ft_parsing_file_name(const char *file)
 {
@@ -27,7 +27,7 @@ static bool	ft_parsing_file_name(const char *file)
 	return (true);
 }
 
-bool	ft_is_file_readble(const char *file)
+bool	ft_is_file_readable(const char *file)
 {
 	int	fd;
 	char	buffer[1];
@@ -35,16 +35,9 @@ bool	ft_is_file_readble(const char *file)
 	buffer[0] = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1 || read(fd, buffer, 1) == -1)
-	{
-		perror("Error\nDescription");
-		close(fd);
-		exit (1);
-	}
+		ft_perror_exit();
 	if (ft_parsing_file_name(file) == false)
-	{
-		ft_printf("Error\nDescription: Not a *.ber file\n");
-		exit(1);
-	}
+		ft_fderror_exit(NOT_BER_M);
 	close(fd);
 	return (true);
 }

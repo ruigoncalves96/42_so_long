@@ -6,23 +6,21 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:11:31 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/27 14:14:04 by randrade         ###   ########.fr       */
+/*   Updated: 2024/10/28 14:31:27 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 
-static int	ft_open_file(const char *map, mode_t open_mode)
+static char	*ft_copy_line(int fd)
 {
-	int	fd;
+	char	*temp;
+	char	*new_line;
 
-	fd = open(map, open_mode);
-	if (fd < 0)
-	{
-		perror("Error\nDescription");
-		return (1);
-	}
-	return (fd);
+	temp = get_next_line(fd);
+	new_line = ft_strtrim(temp, "\n");
+	free(temp);
+	return (new_line);
 }
 
 static unsigned int	ft_paragraph_len(const char *map)
@@ -31,13 +29,12 @@ static unsigned int	ft_paragraph_len(const char *map)
 	int	len;
 	char	*str;
 
-	fd = ft_open_file(map, O_RDONLY);
+	fd = open(map, O_RDONLY);
+	if (fd == -1)
+		ft_perror_exit();
 	str = get_next_line(fd);
 	if (!str)
-	{
-		ft_putstr_fd("Error\nDescription: Map not rectangle!\n", 2);
-		exit(1);
-	}
+		ft_fderror_exit("Error\nDescription: Empty file!\n");
 	len = 1;
 	while (str)
 	{
@@ -54,23 +51,21 @@ char	**ft_alloc_map_array(const char *map, t_map_info *map_info)
 {
 	unsigned int	i;
 	int	fd;
-	char	*temp;
 	char	**ptr;
 
 	map_info->size_y = ft_paragraph_len(map);
 	ptr = ft_calloc(map_info->size_y + 1, sizeof(char *));
 	if (!ptr)
-	{
-		perror("Error\nDescription:");
-		exit(0);
-	}
-	fd = ft_open_file(map, O_RDONLY);
+		ft_perror_exit();
+	fd = open(map, O_RDONLY);
+	if (fd == -1)
+		ft_perror_free_exit(ptr);
 	i = 0;
 	while (i < map_info->size_y)
 	{
-		temp = get_next_line(fd);
-		ptr[i] = ft_strtrim(temp, "\n");
-		free(temp);
+		ptr[i] = ft_copy_line(fd);
+		if (!ptr[i])
+			ft_perror_free_exit(ptr);
 		i++;
 	}
 	ptr[i] = NULL;

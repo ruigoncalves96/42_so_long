@@ -6,44 +6,27 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:11:31 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/27 23:49:27 by randrade         ###   ########.fr       */
+/*   Updated: 2024/10/28 14:31:32 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 
 static bool	ft_is_playable(const char **map, t_map_info *map_info)
 {
 	char	**copy_map;
-	int	y;
 
-	y = 0;
-	copy_map = calloc((map_info->size_y + 1), sizeof(char *));
+	copy_map = ft_array_dup(map, map_info);
 	if (!copy_map)
-	{
-		perror("Exit\nDescription");
-		exit(1);
-	}
-	while (map[y])
-	{
-		copy_map[y] = ft_strdup(map[y]);
-		if (!copy_map[y])
-		{
-			perror("Exit\nDescription");
-			ft_free_array(copy_map);
-			free(copy_map);
-			exit(1);
-		}
-		y++;
-	}
-	copy_map[y] = NULL;
+		ft_perror_free_exit((char **)map);
 	ft_flood_fill(copy_map, map_info, map_info->player_coord.x, map_info->player_coord.y);
-//	ft_is_winnable((const char **)copy_map);
-	ft_print_array((const char **)copy_map);
+	if (ft_is_winnable((const char **)copy_map) == false)
+	{
+		ft_free_array(copy_map);
+		ft_fderror_free_exit("Exit\nDescription: Not winnable!\n", (char **)map);
+	}
 	ft_free_array(copy_map);
-	free(copy_map);
 	return (true);
-//	CHECK NO COLLECTABLES AND EXIT HAS AN F ARROUND
 }
 
 static bool	ft_check_map_content(const char **map, t_map_info *map_info)
@@ -57,16 +40,14 @@ static bool	ft_check_map_content(const char **map, t_map_info *map_info)
 		x = 0;
 		while (x < map_info->size_x)
 		{
-			ft_count_content(map[y][x], map_info, x, y);
+			if (ft_count_content(map[y][x], map_info, x, y) == false)
+				ft_fderror_free_exit("Exit\nDescription: Not the right content!\n", (char **)map);
 			x++;
 		}
 		y++;
 	}
 	if (map_info->player != 1 || map_info->collectible == 0 || map_info->exit != 1)
-	{
-		ft_putstr_fd("Exit\nDescription: Not the right content!\n", 2);
-		exit(1);
-	}
+		ft_fderror_free_exit("Exit\nDescription: Not the right content!\n", (char **)map);
 	return (true);
 }
 
@@ -80,9 +61,16 @@ static bool	ft_is_closed(const char **map, t_map_info *map_info)
 	while (i < map_info->size_y)
 	{
 		if (i == 0 || i == map_info->size_y - 1)
-			ft_check_top_bottom_wall(map[y], map_info);
+		{
+			if (ft_check_top_bottom_wall(map[y], map_info) == false)
+				ft_fderror_free_exit("Exit\nDescription: Map not closed!\n", (char **)map);
+		}
 		else
-			ft_check_left_right_wall(map[y], map_info);
+		{
+			if (ft_check_left_right_wall(map[y], map_info) == false)
+				ft_fderror_free_exit("Exit\nDescription: Map not closed!\n", (char **)map);
+
+		}
 		i++;
 		y++;
 	}
@@ -101,10 +89,7 @@ static bool	ft_is_rectangle(const char **map, t_map_info *map_info)
 	{
 		len = ft_strlen(map[y]);
 		if (len != map_info->size_x)
-		{
-			ft_putstr_fd("Error\nDescription: Not a rectangle!\n", 2);
-			exit(1);
-		}
+			ft_fderror_free_exit("Error\nDescription: Not a rectangle!\n", (char **)map);
 		y++;
 	}
 	return (true);

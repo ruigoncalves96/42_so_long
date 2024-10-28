@@ -13,11 +13,14 @@ SRC_PATH = ./src
 OBJ_PATH = $(SRC_PATH)/obj
 
 SRC_UTILS_PATH = $(SRC_PATH)/utils
+SRC_ERRORS_PATH = $(SRC_PATH)/errors
 
 SRC = $(addprefix $(SRC_PATH)/, so_long.c check_file.c alloc_map.c map_parsing.c)
 SRC_UTILS = $(addprefix $(SRC_UTILS_PATH)/, utils.c parsing_utils.c)
+SRC_ERRORS = $(addprefix $(SRC_ERRORS_PATH)/, error_handling.c)
 
-OBJ = $(addprefix $(OBJ_PATH)/, $(notdir $(SRC:.c=.o)) $(notdir $(SRC_UTILS:.c=.o)))
+OBJ = $(addprefix $(OBJ_PATH)/, $(notdir $(SRC:.c=.o)) $(notdir $(SRC_UTILS:.c=.o)) \
+	$(notdir $(SRC_ERRORS:.c=.o)))
 
 # --- Basic compilation ---
 
@@ -30,6 +33,9 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_PATH)/%.o: $(SRC_UTILS_PATH)/%.c | $(OBJ_PATH)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_PATH)/%.o: $(SRC_ERRORS_PATH)/%.c | $(OBJ_PATH)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(LIBFT) $(OBJ)
