@@ -6,26 +6,20 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:11:31 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/27 12:42:39 by randrade         ###   ########.fr       */
+/*   Updated: 2024/10/27 21:56:41 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../../so_long.h"
 
 void	ft_initialize_t_map_info(t_map_info *map_info)
 {
-	map_info->size_xy[0] = 0;
-	map_info->size_xy[1] = 0;
-	map_info->wall = 0;
-	map_info->floor = 0;
-	map_info->player = 0;
-	map_info->collectible = 0;
-	map_info->exit = 0;
+	ft_memset(map_info, 0, sizeof(t_map_info));
 }
 
-void	ft_print_array(char **str)
+void	ft_print_array(const char **str)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
 	while (str[i])

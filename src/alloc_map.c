@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:11:31 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/27 12:36:16 by randrade         ###   ########.fr       */
+/*   Updated: 2024/10/27 14:14:04 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ char	**ft_alloc_map_array(const char *map, t_map_info *map_info)
 	char	*temp;
 	char	**ptr;
 
-	map_info->size_xy[1] = ft_paragraph_len(map);
-	ptr = ft_calloc(map_info->size_xy[1] + 1, sizeof(char *));
+	map_info->size_y = ft_paragraph_len(map);
+	ptr = ft_calloc(map_info->size_y + 1, sizeof(char *));
 	if (!ptr)
 	{
 		perror("Error\nDescription:");
@@ -66,7 +66,7 @@ char	**ft_alloc_map_array(const char *map, t_map_info *map_info)
 	}
 	fd = ft_open_file(map, O_RDONLY);
 	i = 0;
-	while (i < map_info->size_xy[1])
+	while (i < map_info->size_y)
 	{
 		temp = get_next_line(fd);
 		ptr[i] = ft_strtrim(temp, "\n");

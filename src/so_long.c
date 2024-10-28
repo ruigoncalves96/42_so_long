@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:15:10 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/27 12:44:09 by randrade         ###   ########.fr       */
+/*   Updated: 2024/10/27 21:56:30 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char *argv[])
 {
 	t_map_info	map_info;
-	char	**map;
+	const char	**map;
 
 	if (argc != 2)
 	{
@@ -24,6 +24,9 @@ int	main(int argc, char *argv[])
 	}
 	ft_is_file_readble(argv[1]);				// CHECK MAP FILE
 	ft_initialize_t_map_info(&map_info);			// INITIALIZE MAP_INFO
-	map = ft_alloc_map_array(argc[1], &map_info);		// CREATES MAP ARRAY
-	ft_map_parsing(argv[1]);				// PARSES THE MAP
+	map = (const char **)ft_alloc_map_array(argv[1], &map_info);		// CREATES MAP ARRAY
+//	ft_print_array(map);
+	ft_map_parsing(map, &map_info);
+	ft_free_array((char **)map);
+	free(map);
 }

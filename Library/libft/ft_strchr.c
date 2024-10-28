@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ruigoncalves <ruigoncalves@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 22:59:58 by randrade          #+#    #+#             */
-/*   Updated: 2024/04/24 15:13:17 by randrade         ###   ########.fr       */
+/*   Updated: 2024/10/27 14:31:36 by ruigoncalve      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s != (unsigned char)c && *s)
+	while (*s && *s != (unsigned char)c)
 		s++;
 	if (*s != (unsigned char)c)
 		return (NULL);
