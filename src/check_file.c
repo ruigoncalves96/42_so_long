@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:34:07 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/28 14:31:21 by randrade         ###   ########.fr       */
+/*   Updated: 2024/10/28 18:28:11 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ static bool	ft_parsing_file_name(const char *file)
 	if (str == NULL)
 		return (false);
 	str++;
-	if (ft_strlen(str) > 3)
-		return (false);
-	if (ft_strncmp("ber", str, 3) != 0)
+	if (ft_strlen(str) > 3 || ft_strncmp("ber", str, 3) != 0)
 		return (false);
 	return (true);
 }
