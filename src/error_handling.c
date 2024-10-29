@@ -6,11 +6,11 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 11:25:53 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/28 14:31:51 by randrade         ###   ########.fr       */
+/*   Updated: 2024/10/29 22:32:09 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 
 //	PERROR + EXIT
 void	ft_perror_exit(void)

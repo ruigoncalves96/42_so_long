@@ -6,11 +6,11 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:11:31 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/29 12:20:58 by randrade         ###   ########.fr       */
+/*   Updated: 2024/10/29 22:31:53 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 
 char	**ft_array_dup(const char **map, t_map_info *map_info)
 {
