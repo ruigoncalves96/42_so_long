@@ -6,36 +6,11 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:11:31 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/28 16:19:29 by randrade         ###   ########.fr       */
+/*   Updated: 2024/10/29 11:45:50 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-
-bool	ft_can_reach_exit(const char **map)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	x = 0;
-	while (map[y])
-	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (map[y][x] == 'E')
-			{
-				if (map[y + 1][x] != 'F' && map[y - 1][x] != 'F' &&
-					map[y][x + 1] != 'F' && map[y][x - 1] != 'F')
-					return (false);
-			}
-			x++;
-		}
-		y++;
-	}
-	return (true);
-}
 
 unsigned int	ft_flood_fill(char **map, t_map_info *map_info,
 					unsigned int y, unsigned int x)
@@ -43,6 +18,8 @@ unsigned int	ft_flood_fill(char **map, t_map_info *map_info,
 	unsigned int	collectibles;
 
 	collectibles = 0;
+	if (map[y][x] == 'E')
+		map_info->exit_reached = true;
 	if (x >= map_info->size_x || x < 0 || y >= map_info->size_y || y < 0
 		|| (map[y][x] != '0' && map[y][x] != 'C' && map[y][x] != 'P'))
 		return (collectibles);
@@ -53,6 +30,8 @@ unsigned int	ft_flood_fill(char **map, t_map_info *map_info,
 	collectibles += ft_flood_fill(map, map_info, y - 1, x);
 	collectibles += ft_flood_fill(map, map_info, y, x + 1);
 	collectibles += ft_flood_fill(map, map_info, y, x - 1);
+	if (collectibles == map_info->collectibles)
+		map_info->collectibles_reached = true;
 	return (collectibles);
 }
 

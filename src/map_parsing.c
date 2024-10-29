@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:11:31 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/28 16:35:43 by randrade         ###   ########.fr       */
+/*   Updated: 2024/10/29 11:49:32 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,13 @@
 static bool	ft_is_playable(const char **map, t_map_info *map_info)
 {
 	char	**copy_map;
-	unsigned int	collectibles;
 
-	collectibles = 0;
 	copy_map = ft_array_dup(map, map_info);
 	if (!copy_map)
 		ft_perror_free_exit((char **)map);
-	collectibles = ft_flood_fill(copy_map, map_info, map_info->player_coord.y,
+	ft_flood_fill(copy_map, map_info, map_info->player_coord.y,
 			map_info->player_coord.x);
-	if (collectibles != map_info->collectibles)
-	{
-		ft_free_array(copy_map);
-		ft_fderror_free_exit(NOT_WINNABLE_M, (char **)map);
-	}
-	if (ft_can_reach_exit((const char **)copy_map) == false)
+	if (map_info->collectibles_reached == false || map_info->exit_reached == false)
 	{
 		ft_free_array(copy_map);
 		ft_fderror_free_exit(NOT_WINNABLE_M, (char **)map);

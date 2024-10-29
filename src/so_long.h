@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:15:50 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/28 16:36:37 by randrade         ###   ########.fr       */
+/*   Updated: 2024/10/29 11:50:26 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct s_map_info
 	unsigned int	player;
 	unsigned int	collectibles;
 	unsigned int	exit;
+	bool		exit_reached;
+	bool		collectibles_reached;
 	t_coord			player_coord;
 }		t_map_info;
 
@@ -59,7 +61,6 @@ void	ft_print_array(const char **str);
 void	ft_free_array(char **array);
 
 //	PARSING_UTILS
-bool	ft_can_reach_exit(const char **map);
 bool	ft_count_content(char content, t_map_info *map_info,
 			unsigned int y, unsigned int x);
 bool	ft_check_top_bottom_wall(const char *map, t_map_info *map_info);
