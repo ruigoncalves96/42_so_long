@@ -1,7 +1,7 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-#MLXFLAG = -L. -lXext -L. -lX11					# LINUX
-MLXFLAG = -Lmlx -lmlx -framework OpenGL -framework AppKit	# MAC
+#MLXFLAG = -L. -lXext -L. -lX11
+MLXFLAG = -Lmlx -lmlx -framework OpenGL -framework AppKit
 LIBC = ar rcs
 MD = mkdir -p
 RM = rm -f
@@ -11,8 +11,8 @@ NAME = so_long
 
 LIBFT_PATH = Library/
 LIBFT = $(LIBFT_PATH)libft.a
-#MLX_PATH = mlx_linux/			# LINUX
-MLX_PATH = mlx/				# MAC
+#MLX_PATH = mlx_linux/
+MLX_PATH = mlx/
 MLX = $(MLX_PATH)libmlx.a
 
 SRC_PATH = ./src
@@ -38,7 +38,7 @@ $(MLX):
 $(LIBFT):
 	@make -C $(LIBFT_PATH)
 
-$(NAME): $(LIBFT) $(MLX) $(OBJ)
+$(NAME): $(MLX) $(LIBFT) $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) $(MLXFLAG) -o $(NAME)
 
 clean:
