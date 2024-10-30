@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:15:50 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/30 12:32:11 by randrade         ###   ########.fr       */
+/*   Updated: 2024/10/30 12:47:39 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 # include "../Library/libft/libft.h"
 # include "../Library/ft_printf/ft_printf.h"
 # include "../Library/get_next_line/get_next_line.h"
-# include "../mlx_linux/mlx.h"
+//# include "../mlx_linux/mlx.h"	//	LINUX
+# include "../mlx/mlx.h"		//	MAC
 # include <stdbool.h>
 # include <string.h>
 
