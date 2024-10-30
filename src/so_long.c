@@ -6,12 +6,23 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:15:10 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/29 23:10:32 by randrade         ###   ########.fr       */
+/*   Updated: 2024/10/30 12:34:07 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/*	** TEST MLX **
+void	ft_window(void)
+{
+	void	*mlx;
+	void	*mlx_win;
+
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	mlx_loop(mlx);
+}
+*/
 int	main(int argc, char *argv[])
 {
 	t_map_info	map_info;
@@ -25,4 +36,5 @@ int	main(int argc, char *argv[])
 	ft_map_parsing(map, &map_info);
 	ft_print_array(map);
 	ft_free_array((char **)map);
+//	ft_window();
 }

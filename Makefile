@@ -1,6 +1,7 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-MLXFLAG = -Lmlx -lmlx -framework OpenGL -framework AppKit
+#MLXFLAG = -Lmlx -lmlx -framework OpenGL -framework AppKit
+MLXFLAG = -L. -lXext -L. -lX11
 LIBC = ar rcs
 MD = mkdir -p
 RM = rm -f
@@ -8,8 +9,10 @@ RMDIR = rm -rf
 
 NAME = so_long 
 
-LIBFT_PATH = ./Library
-LIBFT = $(LIBFT_PATH)/libft.a
+LIBFT_PATH = Library/
+LIBFT = $(LIBFT_PATH)libft.a
+MLX_PATH = mlx_linux/
+MLX = $(MLX_PATH)libmlx.a
 
 SRC_PATH = ./src
 OBJ_PATH = $(SRC_PATH)/obj
@@ -26,16 +29,20 @@ $(OBJ_PATH):
 	@$(MD) $(OBJ_PATH)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH)
-	@$(CC) $(CFLAGS) -c -Imlx $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(MLX):
+	@make -C $(MLX_PATH)
 
 $(LIBFT):
 	@make -C $(LIBFT_PATH)
 
-$(NAME): $(LIBFT) $(OBJ)
-	@$(CC) $(OBJ) $(LIBFT) -o $(NAME)
+$(NAME): $(LIBFT) $(MLX) $(OBJ)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) $(MLXFLAG) -o $(NAME)
 
 clean:
 	@make -C $(LIBFT_PATH) clean
+	@make -C $(MLX_PATH) clean
 	@$(RM) $(OBJ)
 
 fclean: clean
