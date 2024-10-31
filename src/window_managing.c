@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   window_managing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 18:15:10 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/31 11:04:28 by randrade         ###   ########.fr       */
+/*   Created: 2024/10/31 11:00:21 by randrade          #+#    #+#             */
+/*   Updated: 2024/10/31 14:26:48 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char *argv[])
+void	ft_window(const char **map, t_map_info *map_info)
 {
-	t_map_info	map_info;
-	const char	**map;
+	t_mlx	mlx;
+	t_image	img;
+	(void)map;
+	(void)map_info;
+	int     img_width;
+	int     img_height;
 
-	if (argc != 2)
-		ft_fderror_exit(WRONG_FORMAT_M);
-	ft_is_file_readable(argv[1]);
-	ft_initialize_t_map_info(&map_info);
-	map = (const char **)ft_alloc_map_array(argv[1], &map_info);
-	ft_map_parsing(map, &map_info);
-	ft_print_array(map);
-	ft_free_array((char **)map);
-	ft_window(map, &map_info);
+	mlx.init = mlx_init();
+	mlx.win= mlx_new_window(mlx.init, 1920, 1080, "so_long");
+	img.img = mlx_xpm_file_to_image(mlx.init, "textures/nala.xpm", &img_width, &img_height);
+	mlx_put_image_to_window(mlx.init, mlx.win, img.img, 0, 0);
+	mlx_loop(mlx.init);
 }

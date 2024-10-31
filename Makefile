@@ -20,7 +20,8 @@ OBJ_PATH = $(SRC_PATH)/obj
 
 SRC = so_long.c check_file.c alloc_map.c map_parsing.c \
       utils.c parsing_utils.c \
-      error_handling.c
+      error_handling.c \
+      window_managing.c
 
 OBJ = $(addprefix $(OBJ_PATH)/, $(SRC:.c=.o))
 

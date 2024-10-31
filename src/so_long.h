@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:15:50 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/30 12:47:39 by randrade         ###   ########.fr       */
+/*   Updated: 2024/10/31 11:42:54 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,20 @@ typedef struct s_map_info
 	t_coord			player_coord;
 }		t_map_info;
 
+typedef struct s_mlx
+{
+	void	*init;
+	void	*win;
+}		t_mlx;
+
+typedef struct s_image
+{
+	void	*img;
+	char	*path;
+	int	width;
+	int	height;
+}		t_image;
+
 //	ERROR HANDLING
 void	ft_perror_exit(void);
 void	ft_perror_free_exit(char **array);
@@ -76,5 +90,8 @@ char	**ft_alloc_map_array(const char *map, t_map_info *map_info);
 
 //	MAP_PARSING
 bool	ft_map_parsing(const char **map, t_map_info *map_info);
+
+//	
+void	ft_window(const char **map, t_map_info *map_info);
 
 #endif
