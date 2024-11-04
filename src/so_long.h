@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:15:50 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/31 11:42:54 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/04 15:00:54 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,13 @@ typedef struct s_coord
 
 typedef struct s_map_info
 {
-	unsigned int	walls;
-	unsigned int	floors;
 	unsigned int	player;
 	unsigned int	collectibles;
 	unsigned int	exit;
 	bool		exit_reached;
 	bool		collectibles_reached;
 	t_coord			size;
-	t_coord			player_coord;
+	t_coord			player_c;
 }		t_map_info;
 
 typedef struct s_mlx
@@ -61,6 +59,19 @@ typedef struct s_image
 	int	width;
 	int	height;
 }		t_image;
+
+typedef struct s_data
+{
+	char	**map;
+	t_mlx	mlx;
+	t_image	player;
+	t_image	wall;
+	t_image	floor;
+	t_image	collect;
+	t_image	exit;
+	t_coord	player_c;
+	int	collect_count;
+}		t_data;
 
 //	ERROR HANDLING
 void	ft_perror_exit(void);

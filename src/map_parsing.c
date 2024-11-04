@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:11:31 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/29 12:30:20 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:33:55 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ static bool	ft_is_playable(const char **map, t_map_info *map_info)
 	copy_map = ft_array_dup(map, map_info);
 	if (!copy_map)
 		ft_perror_free_exit((char **)map);
-	ft_flood_fill(copy_map, map_info, map_info->player_coord.y,
-			map_info->player_coord.x);
+	ft_flood_fill(copy_map, map_info, map_info->player_c.y, map_info->player_c.x);
 	ft_free_array(copy_map);
 	if (map_info->collectibles_reached == false || map_info->exit_reached == false)
 		return (false);

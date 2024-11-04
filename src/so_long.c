@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:15:10 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/31 11:04:28 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/04 13:43:55 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int	main(int argc, char *argv[])
 	map = (const char **)ft_alloc_map_array(argv[1], &map_info);
 	ft_map_parsing(map, &map_info);
 	ft_print_array(map);
-	ft_free_array((char **)map);
 	ft_window(map, &map_info);
+	ft_free_array((char **)map);
 }

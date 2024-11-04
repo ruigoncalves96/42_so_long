@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:11:31 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/29 22:32:00 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:37:50 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,18 @@ unsigned int	ft_flood_fill(char **map, t_map_info *map_info,
 bool	ft_count_content(char content, t_map_info *map_info,
 					unsigned int y, unsigned int x)
 {
-	if (content == '0')
-		map_info->floors++;
-	else if (content == '1')
-		map_info->walls++;
-	else if (content == 'P')
+	if (content == 'P')
 	{
 		map_info->player++;
-		map_info->player_coord.y = y;
-		map_info->player_coord.x = x;
+		map_info->player_c.y = y;
+		map_info->player_c.x = x;
 	}
 	else if (content == 'C')
 		map_info->collectibles++;
 	else if (content == 'E')
 		map_info->exit++;
+	else if (content == '0' || content == '1')
+		return (true);
 	else
 		return (false);
 	return (true);
