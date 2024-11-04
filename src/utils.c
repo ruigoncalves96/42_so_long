@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:11:31 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/29 22:31:53 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/04 16:47:30 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,19 @@ void	ft_free_array(char **array)
 
 void	ft_initialize_t_map_info(t_map_info *map_info)
 {
-	ft_memset(map_info, 0, sizeof(t_map_info));
+	ft_memset(map_info, 0, sizeof(map_info));
+	ft_memset(&map_info->size, 0, sizeof(map_info->size));
+	ft_memset(&map_info->player_c, 0, sizeof(map_info->player_c));
+	map_info->exit = 0;
+}
+
+void	ft_initialize_t_data(t_data *data)
+{
+	ft_memset(data, 0, sizeof(data));
+	ft_memset(&data->player, 0, sizeof(data->player));
+	ft_memset(&data->wall, 0, sizeof(data->wall));
+	ft_memset(&data->floor, 0, sizeof(data->floor));
+	ft_memset(&data->collect, 0, sizeof(data->collect));
+	ft_memset(&data->exit, 0, sizeof(data->exit));
+	ft_memset(&data->player_c, 0, sizeof(data->player_c));
 }

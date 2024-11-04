@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:15:50 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/04 15:00:54 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/04 17:16:15 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ typedef struct s_image
 
 typedef struct s_data
 {
-	char	**map;
+	const char	**map;
+	int	collect_count;
 	t_mlx	mlx;
 	t_image	player;
 	t_image	wall;
@@ -70,8 +71,34 @@ typedef struct s_data
 	t_image	collect;
 	t_image	exit;
 	t_coord	player_c;
-	int	collect_count;
 }		t_data;
+
+//	t_player
+//		t_image		img;
+//		t_coord		coord;
+//
+//	t_collect
+//		t_image		img;
+//		int		count;
+//
+//	t_info
+//		unsigned int	player;
+//		unsigned int	collect;
+//		unsigned int	exit;
+//		bool		exit_reached;
+//		bool		collect_reached;
+//		t_coord		size;
+//
+//	data struct
+//		**map;
+//		t_mlx		mlx;
+//		t_player	player;
+//		t_collect	collect;
+//		t_image		exit;
+//		t_image		wall;
+//		t_image		floor;
+//		t_info		map_info;
+
 
 //	ERROR HANDLING
 void	ft_perror_exit(void);
@@ -82,6 +109,7 @@ void	ft_fderror_free_exit(char *error_message, char **array);
 //	UTILS
 char	**ft_array_dup(const char **map, t_map_info *map_info);
 void	ft_initialize_t_map_info(t_map_info *map_info);
+void	ft_initialize_t_data(t_data *data);
 void	ft_print_array(const char **str);
 void	ft_free_array(char **array);
 
@@ -103,6 +131,6 @@ char	**ft_alloc_map_array(const char *map, t_map_info *map_info);
 bool	ft_map_parsing(const char **map, t_map_info *map_info);
 
 //	
-void	ft_window(const char **map, t_map_info *map_info);
+void	ft_window(t_data *data, t_map_info *map_info);
 
 #endif
