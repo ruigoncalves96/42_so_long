@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:15:50 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/04 17:16:15 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/05 14:36:01 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,6 @@ typedef struct s_coord
 	unsigned int	x;
 }		t_coord;
 
-typedef struct s_map_info
-{
-	unsigned int	player;
-	unsigned int	collectibles;
-	unsigned int	exit;
-	bool		exit_reached;
-	bool		collectibles_reached;
-	t_coord			size;
-	t_coord			player_c;
-}		t_map_info;
-
 typedef struct s_mlx
 {
 	void	*init;
@@ -60,45 +49,39 @@ typedef struct s_image
 	int	height;
 }		t_image;
 
+typedef struct s_player
+{
+	t_image		img;
+	t_coord		coord;
+}		t_player;
+
+typedef struct s_collect
+{
+	t_image		img;
+	unsigned int	count;
+}		t_collect;
+
+typedef struct s_map_info
+{
+	unsigned int	player;
+	unsigned int	collectibles;
+	unsigned int	exit;
+	bool		exit_reached;
+	bool		collectibles_reached;
+	t_coord		size;
+}		t_map_info;
+
 typedef struct s_data
 {
 	const char	**map;
-	int	collect_count;
-	t_mlx	mlx;
-	t_image	player;
-	t_image	wall;
-	t_image	floor;
-	t_image	collect;
-	t_image	exit;
-	t_coord	player_c;
+	t_mlx		mlx;
+	t_player	player;
+	t_collect	collect;
+	t_image		exit;
+	t_image		wall;
+	t_image		floor;
+	t_map_info	map_info;
 }		t_data;
-
-//	t_player
-//		t_image		img;
-//		t_coord		coord;
-//
-//	t_collect
-//		t_image		img;
-//		int		count;
-//
-//	t_info
-//		unsigned int	player;
-//		unsigned int	collect;
-//		unsigned int	exit;
-//		bool		exit_reached;
-//		bool		collect_reached;
-//		t_coord		size;
-//
-//	data struct
-//		**map;
-//		t_mlx		mlx;
-//		t_player	player;
-//		t_collect	collect;
-//		t_image		exit;
-//		t_image		wall;
-//		t_image		floor;
-//		t_info		map_info;
-
 
 //	ERROR HANDLING
 void	ft_perror_exit(void);
@@ -108,13 +91,12 @@ void	ft_fderror_free_exit(char *error_message, char **array);
 
 //	UTILS
 char	**ft_array_dup(const char **map, t_map_info *map_info);
-void	ft_initialize_t_map_info(t_map_info *map_info);
 void	ft_initialize_t_data(t_data *data);
 void	ft_print_array(const char **str);
 void	ft_free_array(char **array);
 
 //	PARSING_UTILS
-bool	ft_count_content(char content, t_map_info *map_info,
+bool	ft_count_content(char content, t_data *data,
 			unsigned int y, unsigned int x);
 bool	ft_check_top_bottom_wall(const char *map, t_map_info *map_info);
 bool	ft_check_left_right_wall(const char *map, t_map_info *map_info);
@@ -128,9 +110,9 @@ bool	ft_is_file_readable(const char *file);
 char	**ft_alloc_map_array(const char *map, t_map_info *map_info);
 
 //	MAP_PARSING
-bool	ft_map_parsing(const char **map, t_map_info *map_info);
+bool	ft_map_parsing(t_data *data);
 
 //	
-void	ft_window(t_data *data, t_map_info *map_info);
+void	ft_window(t_data *data);
 
 #endif

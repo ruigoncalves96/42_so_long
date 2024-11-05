@@ -6,45 +6,45 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:11:31 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/04 16:44:15 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/05 14:36:52 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static bool	ft_is_playable(const char **map, t_map_info *map_info)
+static bool	ft_is_playable(const char **map, t_map_info *map_info, t_player *player)
 {
 	char	**copy_map;
 
 	copy_map = ft_array_dup(map, map_info);
 	if (!copy_map)
 		ft_perror_free_exit((char **)map);
-	ft_flood_fill(copy_map, map_info, map_info->player_c.y, map_info->player_c.x);
+	ft_flood_fill(copy_map, map_info, player->coord.y, player->coord.x);
 	ft_free_array(copy_map);
 	if (map_info->collectibles_reached == false || map_info->exit_reached == false)
 		return (false);
 	return (true);
 }
 
-static bool	ft_check_map_content(const char **map, t_map_info *map_info)
+static bool	ft_check_map_content(t_data *data)
 {
 	unsigned int	y;
 	unsigned int	x;
 
 	y = 0;
-	while (y < map_info->size.y)
+	while (y < data->map_info.size.y)
 	{
 		x = 0;
-		while (x < map_info->size.x)
+		while (x < data->map_info.size.x)
 		{
-			if (ft_count_content(map[y][x], map_info, y, x) == false)
+			if (ft_count_content(data->map[y][x], data, y, x) == false)
 				return (false);
 			x++;
 		}
 		y++;
 	}
-	if (map_info->player != 1 || map_info->collectibles == 0
-		|| map_info->exit != 1)
+	if (data->map_info.player != 1 || data->map_info.collectibles == 0
+		|| data->map_info.exit != 1)
 		return (false);
 	return (true);
 }
@@ -88,15 +88,15 @@ static bool	ft_is_rectangle(const char **map, t_map_info *map_info)
 	return (true);
 }
 
-bool	ft_map_parsing(const char **map, t_map_info *map_info)
+bool	ft_map_parsing(t_data *data)
 {
-	if (ft_is_rectangle(map, map_info) == false)
-		ft_fderror_free_exit(NOT_RECTANGLE_M, (char **)map);
-	if (ft_is_closed(map, map_info) == false)
-		ft_fderror_free_exit(NOT_CLOSED_M, (char **)map);
-	if (ft_check_map_content(map, map_info) == false)
-		ft_fderror_free_exit(WRONG_CONTENT_M, (char **)map);
-	if (ft_is_playable(map, map_info) == false)
-		ft_fderror_free_exit(NOT_WINNABLE_M, (char **)map);
+	if (ft_is_rectangle(data->map, &data->map_info) == false)
+		ft_fderror_free_exit(NOT_RECTANGLE_M, (char **)data->map);
+	if (ft_is_closed(data->map, &data->map_info) == false)
+		ft_fderror_free_exit(NOT_CLOSED_M, (char **)data->map);
+	if (ft_check_map_content(data) == false)
+		ft_fderror_free_exit(WRONG_CONTENT_M, (char **)data->map);
+	if (ft_is_playable(data->map, &data->map_info, &data->player) == false)
+		ft_fderror_free_exit(NOT_WINNABLE_M, (char **)data->map);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:15:10 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/04 16:48:01 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/05 14:20:10 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,16 @@
 
 int	main(int argc, char *argv[])
 {
-	t_map_info	map_info;
 	t_data	data;
 
 	if (argc != 2)
 		ft_fderror_exit(WRONG_FORMAT_M);
 	ft_is_file_readable(argv[1]);
-	ft_initialize_t_map_info(&map_info);
 	ft_initialize_t_data(&data);
-	data.map = (const char **)ft_alloc_map_array(argv[1], &map_info);
-	ft_map_parsing(data.map, &map_info);
+	data.map = (const char **)ft_alloc_map_array(argv[1], &data.map_info);
+	ft_map_parsing(&data);
 	ft_print_array(data.map);
-	ft_window(&data, &map_info);
-	ft_free_array((char **)data.map);
+	ft_window(&data);
 }
 
 
