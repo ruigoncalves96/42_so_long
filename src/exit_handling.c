@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:10:05 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/05 16:44:26 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/05 17:44:19 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_image_error(t_data *data)
 	exit (0);
 }
 
-void	ft_full_free(t_data *data)
+int	ft_full_free(t_data *data)
 {
 	ft_free_array((char **)data->map);
 	mlx_destroy_window(data->mlx.init, data->mlx.win);
@@ -47,4 +47,5 @@ void	ft_full_free(t_data *data)
 //	free(data->wall.img);
 //	free(data->floor.img);
 	exit (0);
+	return (0);
 }

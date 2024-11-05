@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:00:21 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/05 16:22:31 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/05 17:23:11 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@ static bool	ft_move_player_left(t_data *data)
 		if (data->exit.is_open == false)
 			return (false);
 		else
+		{
+			data->moves++;
+			ft_printf("Moves - %d\n", data->moves);
 			ft_full_free(data);
+		}
 	}
 	if (data->map[data->player.coord.y][data->player.coord.x - 1] == 'C')
 		data->collect.count++;
@@ -42,7 +46,11 @@ static bool	ft_move_player_right(t_data *data)
 		if (data->exit.is_open == false)
 			return (false);
 		else
+		{
+			data->moves++;
+			ft_printf("Moves - %d\n", data->moves);
 			ft_full_free(data);
+		}
 	}
 	if (data->map[data->player.coord.y][data->player.coord.x + 1] == 'C')
 		data->collect.count++;
@@ -63,7 +71,11 @@ static bool	ft_move_player_down(t_data *data)
 		if (data->exit.is_open == false)
 			return (false);
 		else
+		{
+			data->moves++;
+			ft_printf("Moves - %d\n", data->moves);
 			ft_full_free(data);
+		}
 	}
 	if (data->map[data->player.coord.y + 1][data->player.coord.x] == 'C')
 		data->collect.count++;
@@ -84,7 +96,11 @@ static bool	ft_move_player_up(t_data *data)
 		if (data->exit.is_open == false)
 			return (false);
 		else
+		{
+			data->moves++;
+			ft_printf("Moves - %d\n", data->moves);
 			ft_full_free(data);
+		}
 	}
 	if (data->map[data->player.coord.y - 1][data->player.coord.x] == 'C')
 		data->collect.count++;

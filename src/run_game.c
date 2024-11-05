@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:00:21 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/05 16:44:52 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/05 17:55:41 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ void	ft_run_game(t_data *data)
 	if (data->mlx.win == NULL)
 		ft_perror_free_exit((char **)data->map);
 	ft_draw_images(data);
-	mlx_key_hook(data->mlx.win, ft_key_handler, data);
+	mlx_hook(data->mlx.win, 2, 1L<<0, ft_key_handler, data);
 	mlx_loop(data->mlx.init);
 }

@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:11:31 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/05 14:54:36 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/05 17:43:31 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,6 @@ char	**ft_array_dup(const char **map, t_map_info *map_info)
 	}
 	copy_map[y] = NULL;
 	return (copy_map);
-}
-
-void	ft_print_array(const char **str)
-{
-	while (*str)
-	{
-		ft_printf("%s\n", *str);
-		str++;
-	}
 }
 
 void	ft_free_array(char **array)

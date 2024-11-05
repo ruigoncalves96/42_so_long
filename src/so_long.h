@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:15:50 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/05 16:45:31 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/05 17:44:39 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,11 @@ void	ft_fderror_free_exit(char *error_message, char **array);
 
 //	EXIT_HANDLING
 void	ft_image_error(t_data *data);
-void	ft_full_free(t_data *data);
+int	ft_full_free(t_data *data);
 
 //	UTILS
 char	**ft_array_dup(const char **map, t_map_info *map_info);
 void	ft_initialize_t_data(t_data *data);
-void	ft_print_array(const char **str);
 void	ft_free_array(char **array);
 
 //	PARSING_UTILS

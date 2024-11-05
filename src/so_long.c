@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:15:10 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/05 16:45:45 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/05 17:44:53 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@ int	main(int argc, char *argv[])
 	ft_initialize_t_data(&data);
 	data.map = (const char **)ft_alloc_map_array(argv[1], &data.map_info);
 	ft_map_parsing(&data);
-	ft_print_array(data.map);
 	ft_run_game(&data);
 }
