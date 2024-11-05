@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:11:31 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/05 13:49:06 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/05 14:54:36 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ void	ft_initialize_t_data(t_data *data)
 	ft_memset(&data->player.coord, 0, sizeof(t_coord));
 	ft_memset(&data->collect, 0, sizeof(t_collect));
 	ft_memset(&data->collect.img, 0, sizeof(t_image));
-	ft_memset(&data->exit, 0, sizeof(t_image));
+	ft_memset(&data->exit, 0, sizeof(t_exit));
+	ft_memset(&data->exit.img, 0, sizeof(t_image));
 	ft_memset(&data->wall, 0, sizeof(t_image));
 	ft_memset(&data->floor, 0, sizeof(t_image));
 	ft_memset(&data->map_info, 0, sizeof(t_map_info));

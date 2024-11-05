@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:15:50 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/05 14:36:01 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/05 16:45:31 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@
 # define NOT_CLOSED_M "Error\nDescription: Map not closed!\n"
 # define WRONG_CONTENT_M "Error\nDescription: Not the right content!\n"
 # define NOT_WINNABLE_M "Error\nDescription: Not winnable!\n"
+
+# define WALL_PATH "textures/tree.xpm"
+# define FLOOR_PATH "textures/grass.xpm"
+# define COLLECT_PATH "textures/ball.xpm"
+# define PLAYER_PATH "textures/nala.xpm"
+# define EXIT_PATH "textures/portal.xpm"
 
 typedef struct s_coord
 {
@@ -61,6 +67,12 @@ typedef struct s_collect
 	unsigned int	count;
 }		t_collect;
 
+typedef struct s_exit
+{
+	t_image		img;
+	bool		is_open;
+}		t_exit;
+
 typedef struct s_map_info
 {
 	unsigned int	player;
@@ -74,10 +86,11 @@ typedef struct s_map_info
 typedef struct s_data
 {
 	const char	**map;
+	unsigned int	moves;
 	t_mlx		mlx;
 	t_player	player;
 	t_collect	collect;
-	t_image		exit;
+	t_exit		exit;
 	t_image		wall;
 	t_image		floor;
 	t_map_info	map_info;
@@ -88,6 +101,10 @@ void	ft_perror_exit(void);
 void	ft_perror_free_exit(char **array);
 void	ft_fderror_exit(char *error_message);
 void	ft_fderror_free_exit(char *error_message, char **array);
+
+//	EXIT_HANDLING
+void	ft_image_error(t_data *data);
+void	ft_full_free(t_data *data);
 
 //	UTILS
 char	**ft_array_dup(const char **map, t_map_info *map_info);
@@ -103,6 +120,9 @@ bool	ft_check_left_right_wall(const char *map, t_map_info *map_info);
 unsigned int	ft_flood_fill(char **map, t_map_info *map_info,
 			unsigned int y, unsigned int x);
 
+//	RUN_GAME_UTILS
+int	ft_key_handler(int keycode, t_data *data);
+
 //	CHECK_FILE
 bool	ft_is_file_readable(const char *file);
 
@@ -112,7 +132,7 @@ char	**ft_alloc_map_array(const char *map, t_map_info *map_info);
 //	MAP_PARSING
 bool	ft_map_parsing(t_data *data);
 
-//	
-void	ft_window(t_data *data);
+//	RUN_GAME
+void	ft_run_game(t_data *data);
 
 #endif
