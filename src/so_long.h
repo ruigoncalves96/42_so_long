@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:15:50 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/06 13:22:48 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/06 16:55:35 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "../Library/libft/libft.h"
 # include "../Library/ft_printf/ft_printf.h"
 # include "../Library/get_next_line/get_next_line.h"
-//# include "../mlx_linux/mlx.h"	//	LINUX
-# include "../mlx/mlx.h"		//	MAC
+# include "../mlx_linux/mlx.h"	//	LINUX
+//# include "../mlx/mlx.h"		//	MAC
 # include <stdbool.h>
 # include <string.h>
 
@@ -35,17 +35,17 @@
 # define PLAYER_PATH "textures/nala.xpm"
 # define EXIT_PATH "textures/portal.xpm"
 
-# define ESC 53
-# define LEFT_A 0
-# define RIGHT_D 2
-# define DOWN_S 1
-# define UP_W 13
-# define LEFT_ARROW 123
-# define RIGHT_ARROW 124
-# define DOWN_ARROW 125
-# define UP_ARROW 126
+# define ESC 65307
+# define LEFT_A 97
+# define RIGHT_D 100
+# define DOWN_S 115
+# define UP_W 119
+# define LEFT_ARROW 65361
+# define RIGHT_ARROW 65363
+# define DOWN_ARROW 65364
+# define UP_ARROW 65362
 
-# define MAX_MOVES 10000
+# define MAX_MOVES 4294967295
 
 typedef struct s_coord
 {
@@ -106,7 +106,6 @@ typedef struct s_data
 	t_image		wall;
 	t_image		floor;
 	t_map_info	map_info;
-	t_coord		screen;
 }		t_data;
 
 //	ERROR HANDLING
@@ -135,8 +134,8 @@ unsigned int	ft_flood_fill(char **map, t_map_info *map_info,
 
 //	RUN_GAME_UTILS
 void	ft_print_moves(t_data *data);
-void	ft_update_player_position(t_data *data, unsigned int y, unsigned int x);
-//void	ft_check_screen_map_size(t_data *data);
+void	ft_update_player_position(char **map, t_data *data, unsigned int y, unsigned int x);
+void	ft_check_screen_map_size(t_data *data);
 
 //	KEY_HANDLER
 int		ft_key_handler(int keycode, t_data *data);
@@ -154,3 +153,18 @@ bool	ft_map_parsing(t_data *data);
 void	ft_run_game(t_data *data);
 
 #endif
+
+/*
+- KEYS FOR MAC -
+
+# define ESC 53
+# define LEFT_A 0
+# define RIGHT_D 2
+# define DOWN_S 1
+# define UP_W 13
+# define LEFT_ARROW 123
+# define RIGHT_ARROW 124
+# define DOWN_ARROW 125
+# define UP_ARROW 126
+
+*/

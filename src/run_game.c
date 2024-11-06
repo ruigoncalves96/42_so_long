@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:00:21 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/06 13:32:39 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/06 16:53:04 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	ft_run_game(t_data *data)
 	data->mlx.init = mlx_init();
 	if (data->mlx.init == NULL)
 		ft_perror_free_exit((char **)data->map);
-//	ft_check_screen_map_size(data);
+	ft_check_screen_map_size(data);
 	data->mlx.win = mlx_new_window(data->mlx.init, (data->map_info.size.x * 32),
 			(data->map_info.size.y * 32), "so_long");
 	if (data->mlx.win == NULL)

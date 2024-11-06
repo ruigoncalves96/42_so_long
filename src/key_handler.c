@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:00:21 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/06 13:26:21 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/06 15:46:07 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,8 @@ int	ft_key_handler(int keycode, t_data *data)
 	if (data->collect.count == data->map_info.collectibles)
 		data->exit.is_open = true;
 	if (player_move == true)
-		ft_update_player_position(data, y, x);
-	if (data->moves == MAX_MOVES)
+		ft_update_player_position((char **)data->map, data, y, x);
+	if (data->moves >= MAX_MOVES)
 		ft_close_game(data);
 	return (0);
 }
