@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:11:31 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/05 17:43:31 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/06 12:42:51 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,5 @@ void	ft_initialize_t_data(t_data *data)
 	ft_memset(&data->floor, 0, sizeof(t_image));
 	ft_memset(&data->map_info, 0, sizeof(t_map_info));
 	ft_memset(&data->map_info.size, 0, sizeof(t_coord));
+	ft_memset(&data->screen, 0, sizeof(t_coord));
 }

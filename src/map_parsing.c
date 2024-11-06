@@ -6,13 +6,14 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:11:31 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/05 14:36:52 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/06 13:28:04 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static bool	ft_is_playable(const char **map, t_map_info *map_info, t_player *player)
+static bool	ft_is_playable(const char **map, t_map_info *map_info,
+		t_player *player)
 {
 	char	**copy_map;
 
@@ -21,7 +22,8 @@ static bool	ft_is_playable(const char **map, t_map_info *map_info, t_player *pla
 		ft_perror_free_exit((char **)map);
 	ft_flood_fill(copy_map, map_info, player->coord.y, player->coord.x);
 	ft_free_array(copy_map);
-	if (map_info->collectibles_reached == false || map_info->exit_reached == false)
+	if (map_info->collectibles_reached == false
+		|| map_info->exit_reached == false)
 		return (false);
 	return (true);
 }

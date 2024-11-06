@@ -6,13 +6,13 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:00:21 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/05 17:55:41 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/06 13:32:39 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	ft_put_elements(t_data *data, t_image *img, char c)
+static void	ft_draw_elements(t_data *data)
 {
 	unsigned int	y;
 	unsigned int	x;
@@ -23,16 +23,25 @@ static void	ft_put_elements(t_data *data, t_image *img, char c)
 		x = 0;
 		while (x < data->map_info.size.x)
 		{
-			if (data->map[y][x] == c)
+			if (data->map[y][x] == '1')
 				mlx_put_image_to_window(data->mlx.init, data->mlx.win,
-						img->img, x * 32, y * 32);
+					data->wall.img, x * 32, y * 32);
+			else if (data->map[y][x] == 'C')
+				mlx_put_image_to_window(data->mlx.init, data->mlx.win,
+					data->collect.img.img, x * 32, y * 32);
+			else if (data->map[y][x] == 'E')
+				mlx_put_image_to_window(data->mlx.init, data->mlx.win,
+					data->exit.img.img, x * 32, y * 32);
+			else if (data->map[y][x] == 'P')
+				mlx_put_image_to_window(data->mlx.init, data->mlx.win,
+					data->player.img.img, x * 32, y * 32);
 			x++;
 		}
 		y++;
 	}
 }
 
-static void	ft_put_floor(t_data *data)
+static void	ft_draw_floor(t_data *data)
 {
 	unsigned int	y;
 	unsigned int	x;
@@ -44,14 +53,14 @@ static void	ft_put_floor(t_data *data)
 		while (x < data->map_info.size.x)
 		{
 			mlx_put_image_to_window(data->mlx.init, data->mlx.win,
-					data->floor.img, x * 32, y * 32);
+				data->floor.img, x * 32, y * 32);
 			x++;
 		}
 		y++;
 	}
 }
 
-static void	ft_draw_images(t_data *data)
+static void	ft_load_images(t_data *data)
 {
 	data->player.img.img = mlx_xpm_file_to_image(data->mlx.init, PLAYER_PATH,
 			&data->player.img.width, &data->player.img.height);
@@ -63,14 +72,17 @@ static void	ft_draw_images(t_data *data)
 			&data->wall.width, &data->wall.height);
 	data->floor.img = mlx_xpm_file_to_image(data->mlx.init, FLOOR_PATH,
 			&data->floor.width, &data->floor.height);
-	if (data->player.img.img == NULL || data->collect.img.img == NULL || data->exit.img.img == NULL || data->wall.img == NULL || data->floor.img == NULL)
+	if (data->player.img.img == NULL || data->collect.img.img == NULL
+		|| data->exit.img.img == NULL || data->wall.img == NULL
+		|| data->floor.img == NULL)
 		ft_image_error(data);
-	ft_put_floor(data);
-	ft_put_elements(data, &data->wall, '1');
-	ft_put_elements(data, &data->collect.img, 'C');
-	ft_put_elements(data, &data->exit.img, 'E');
-	mlx_put_image_to_window(data->mlx.init, data->mlx.win, data->player.img.img,
-			(int)data->player.coord.x * 32, (int)data->player.coord.y * 32);
+}
+
+static void	ft_draw_map(t_data *data)
+{
+	ft_load_images(data);
+	ft_draw_floor(data);
+	ft_draw_elements(data);
 }
 
 void	ft_run_game(t_data *data)
@@ -78,11 +90,13 @@ void	ft_run_game(t_data *data)
 	data->mlx.init = mlx_init();
 	if (data->mlx.init == NULL)
 		ft_perror_free_exit((char **)data->map);
+//	ft_check_screen_map_size(data);
 	data->mlx.win = mlx_new_window(data->mlx.init, (data->map_info.size.x * 32),
 			(data->map_info.size.y * 32), "so_long");
 	if (data->mlx.win == NULL)
 		ft_perror_free_exit((char **)data->map);
-	ft_draw_images(data);
-	mlx_hook(data->mlx.win, 2, 1L<<0, ft_key_handler, data);
+	ft_draw_map(data);
+	mlx_hook(data->mlx.win, 2, 1L << 0, ft_key_handler, data);
+	mlx_hook(data->mlx.win, 17, 0, ft_close_game, data);
 	mlx_loop(data->mlx.init);
 }

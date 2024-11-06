@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:34:07 by randrade          #+#    #+#             */
-/*   Updated: 2024/10/28 18:28:11 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/06 13:23:38 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static bool	ft_parsing_file_name(const char *file)
 
 bool	ft_is_file_readable(const char *file)
 {
-	int	fd;
 	char	buffer[1];
+	int		fd;
 
 	buffer[0] = 0;
 	fd = open(file, O_RDONLY);

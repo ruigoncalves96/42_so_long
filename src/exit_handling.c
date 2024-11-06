@@ -6,16 +6,14 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:10:05 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/05 17:44:19 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/06 13:25:17 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-//	ERROR ON IMAGE (FREE IMAGE / ARRAY / WINDOW)
 void	ft_image_error(t_data *data)
 {
-	ft_free_array((char **)data->map);
 	mlx_destroy_window(data->mlx.init, data->mlx.win);
 	if (data->player.img.img != NULL)
 		mlx_destroy_image(data->mlx.init, data->player.img.img);
@@ -27,25 +25,29 @@ void	ft_image_error(t_data *data)
 		mlx_destroy_image(data->mlx.init, data->wall.img);
 	if (data->floor.img != NULL)
 		mlx_destroy_image(data->mlx.init, data->floor.img);
-	exit (0);
+	ft_fderror_free_exit("Error\nDescription: Failed to load image!\n",
+		(char **)data->map);
 }
 
-int	ft_full_free(t_data *data)
+void	ft_size_map_error(t_data *data)
 {
+	free(data->mlx.init);
+	ft_fderror_free_exit("Error\nDescription: Map too large!\n",
+		(char **)data->map);
+}
+
+int	ft_close_game(t_data *data)
+{
+	if (data->moves == MAX_MOVES)
+		printf("You've reached the MAX moves possible\n");
 	ft_free_array((char **)data->map);
 	mlx_destroy_window(data->mlx.init, data->mlx.win);
-	//free(data->mlx.win);
-	//free(data->mlx.init);
 	mlx_destroy_image(data->mlx.init, data->player.img.img);
 	mlx_destroy_image(data->mlx.init, data->collect.img.img);
 	mlx_destroy_image(data->mlx.init, data->exit.img.img);
 	mlx_destroy_image(data->mlx.init, data->wall.img);
 	mlx_destroy_image(data->mlx.init, data->floor.img);
-//	free(data->player.img.img);
-//	free(data->collect.img.img);
-//	free(data->exit.img.img);
-//	free(data->wall.img);
-//	free(data->floor.img);
+	free(data->mlx.init);
 	exit (0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:11:31 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/04 15:47:10 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/06 13:30:21 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ static unsigned int	ft_paragraph_len(const char *map)
 
 char	**ft_alloc_map_array(const char *map, t_map_info *map_info)
 {
-	char		**ptr;
-	unsigned int	i;
-	int			fd;
+	unsigned int		i;
+	char				**ptr;
+	int					fd;
 
 	map_info->size.y = ft_paragraph_len(map);
 	ptr = ft_calloc(map_info->size.y + 1, sizeof(char *));

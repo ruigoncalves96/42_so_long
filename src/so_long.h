@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:15:50 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/05 17:44:39 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/06 13:22:48 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,18 @@
 # define PLAYER_PATH "textures/nala.xpm"
 # define EXIT_PATH "textures/portal.xpm"
 
+# define ESC 53
+# define LEFT_A 0
+# define RIGHT_D 2
+# define DOWN_S 1
+# define UP_W 13
+# define LEFT_ARROW 123
+# define RIGHT_ARROW 124
+# define DOWN_ARROW 125
+# define UP_ARROW 126
+
+# define MAX_MOVES 10000
+
 typedef struct s_coord
 {
 	unsigned int	y;
@@ -51,8 +63,8 @@ typedef struct s_image
 {
 	void	*img;
 	char	*path;
-	int	width;
-	int	height;
+	int		width;
+	int		height;
 }		t_image;
 
 typedef struct s_player
@@ -78,9 +90,9 @@ typedef struct s_map_info
 	unsigned int	player;
 	unsigned int	collectibles;
 	unsigned int	exit;
-	bool		exit_reached;
-	bool		collectibles_reached;
-	t_coord		size;
+	bool			exit_reached;
+	bool			collectibles_reached;
+	t_coord			size;
 }		t_map_info;
 
 typedef struct s_data
@@ -94,6 +106,7 @@ typedef struct s_data
 	t_image		wall;
 	t_image		floor;
 	t_map_info	map_info;
+	t_coord		screen;
 }		t_data;
 
 //	ERROR HANDLING
@@ -104,7 +117,8 @@ void	ft_fderror_free_exit(char *error_message, char **array);
 
 //	EXIT_HANDLING
 void	ft_image_error(t_data *data);
-int	ft_full_free(t_data *data);
+void	ft_size_map_error(t_data *data);
+int		ft_close_game(t_data *data);
 
 //	UTILS
 char	**ft_array_dup(const char **map, t_map_info *map_info);
@@ -120,7 +134,12 @@ unsigned int	ft_flood_fill(char **map, t_map_info *map_info,
 			unsigned int y, unsigned int x);
 
 //	RUN_GAME_UTILS
-int	ft_key_handler(int keycode, t_data *data);
+void	ft_print_moves(t_data *data);
+void	ft_update_player_position(t_data *data, unsigned int y, unsigned int x);
+//void	ft_check_screen_map_size(t_data *data);
+
+//	KEY_HANDLER
+int		ft_key_handler(int keycode, t_data *data);
 
 //	CHECK_FILE
 bool	ft_is_file_readable(const char *file);
