@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:11:31 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/06 12:42:51 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/06 13:45:35 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,4 @@ void	ft_free_array(char **array)
 void	ft_initialize_t_data(t_data *data)
 {
 	ft_memset(data, 0, sizeof(t_data));
-	ft_memset(&data->mlx, 0, sizeof(t_mlx));
-	ft_memset(&data->player, 0, sizeof(t_player));
-	ft_memset(&data->player.img, 0, sizeof(t_image));
-	ft_memset(&data->player.coord, 0, sizeof(t_coord));
-	ft_memset(&data->collect, 0, sizeof(t_collect));
-	ft_memset(&data->collect.img, 0, sizeof(t_image));
-	ft_memset(&data->exit, 0, sizeof(t_exit));
-	ft_memset(&data->exit.img, 0, sizeof(t_image));
-	ft_memset(&data->wall, 0, sizeof(t_image));
-	ft_memset(&data->floor, 0, sizeof(t_image));
-	ft_memset(&data->map_info, 0, sizeof(t_map_info));
-	ft_memset(&data->map_info.size, 0, sizeof(t_coord));
-	ft_memset(&data->screen, 0, sizeof(t_coord));
 }
