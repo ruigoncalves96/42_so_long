@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:10:05 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/06 16:51:56 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:07:21 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,14 @@ void	ft_image_error(t_data *data)
 		mlx_destroy_image(data->mlx.init, data->floor.img);
 	mlx_destroy_display(data->mlx.init);
 	free(data->mlx.init);
-	ft_fderror_free_exit("Error\nDescription: Failed to load image!\n",
-		(char **)data->map);
+	ft_fderror_free_exit(ERROR_LOAD_IMAGE_M, (char **)data->map);
 }
 
 void	ft_size_map_error(t_data *data)
 {
 	mlx_destroy_display(data->mlx.init);
 	free(data->mlx.init);
-	ft_fderror_free_exit("Error\nDescription: Map too large!\n",
-		(char **)data->map);
+	ft_fderror_free_exit(LARGE_MAP_M, (char **)data->map);
 }
 
 int	ft_close_game(t_data *data)
