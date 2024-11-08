@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:00:21 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/08 14:43:35 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/08 14:55:38 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	ft_update_player_position(char **map, t_data *data, unsigned int y,
 		map[y][x] = '0';
 	map[data->player.coord.y][data->player.coord.x] = 'P';
 	if (data->collect.count == data->map_info.collectibles)
-			data->exit.is_open = true;
+		data->exit.is_open = true;
 	if (data->moves >= MAX_MOVES)
-			ft_close_game(data);
+		ft_close_game(data);
 	ft_print_moves(data);
 }
 
