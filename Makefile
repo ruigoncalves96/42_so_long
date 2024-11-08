@@ -1,7 +1,6 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 MLXFLAG = -L. -lXext -L. -lX11
-#MLXFLAG = -Lmlx -lmlx -framework OpenGL -framework AppKit
 LIBC = ar rcs
 MD = mkdir -p
 RM = rm -f
@@ -11,8 +10,7 @@ NAME = so_long
 
 LIBFT_PATH = Library/
 LIBFT = $(LIBFT_PATH)libft.a
-MLX_PATH = mlx_linux/
-#MLX_PATH = mlx/
+MLX_PATH = minilibx/mlx_linux/
 MLX = $(MLX_PATH)libmlx.a
 
 SRC_PATH = ./src
@@ -55,3 +53,6 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+#MLXFLAG = -Lmlx -lmlx -framework OpenGL -framework AppKit
+#MLX_PATH = mlx/

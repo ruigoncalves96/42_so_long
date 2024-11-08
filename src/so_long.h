@@ -6,7 +6,7 @@
 /*   By: randrade <randrade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:15:50 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/08 12:20:34 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/08 13:29:36 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../Library/libft/libft.h"
 # include "../Library/ft_printf/ft_printf.h"
 # include "../Library/get_next_line/get_next_line.h"
-# include "../mlx_linux/mlx.h"
+# include "../minilibx/mlx_linux/mlx.h"
 # include <stdbool.h>
 # include <string.h>
 
@@ -164,7 +164,7 @@ void				ft_draw_map(t_data *data);
  
 - INCLUDE MAC -
 
-# include "../mlx/mlx.h"
+# include "../minilibx/mlx/mlx.h"
 
 - KEYS FOR MAC -
 

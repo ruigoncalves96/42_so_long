@@ -6,7 +6,7 @@
 /*   By: randrade <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:34:07 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/06 13:23:38 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/08 12:57:05 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,13 @@
 static bool	ft_parsing_file_name(const char *file)
 {
 	char	*str;
+	char	*str_cmp;
 
+	str_cmp = ft_strchr(file, '.');
 	str = ft_strrchr(file, '.');
-	if (str == NULL)
+	if (str == NULL || str_cmp == NULL)
+		return (false);
+	if (str != str_cmp)
 		return (false);
 	str++;
 	if (ft_strlen(str) > 3 || ft_strncmp("ber", str, 3) != 0)
