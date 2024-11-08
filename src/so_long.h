@@ -6,7 +6,7 @@
 /*   By: randrade <randrade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:15:50 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/07 17:17:42 by randrade         ###   ########.fr       */
+/*   Updated: 2024/11/08 12:20:34 by randrade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@
 # define ERROR_LOAD_IMAGE_M "Error\nDescription: Failed to load image!\n"
 # define LARGE_MAP_M "Error\nDescription: Map too large!\n"
 
-# define WALL_PATH "textures/tree.xpm"
-# define FLOOR_PATH "textures/grass.xpm"
-# define COLLECT_PATH "textures/ball.xpm"
-# define PLAYER_PATH "textures/nala.xpm"
-# define EXIT_PATH "textures/portal.xpm"
+# define WALL_PATH "textures/42_64x64/rock.xpm"
+# define FLOOR_PATH "textures/42_64x64/water.xpm"
+# define COLLECT_PATH "textures/42_64x64/42.xpm"
+# define PLAYER_PATH "textures/42_64x64/duck.xpm"
+# define EXIT_PATH "textures/42_64x64/blackhole.xpm"
 
-# define IMG_RES 32
+# define IMG_RES 64
 
 # define ESC 65307
 # define LEFT_A 97
@@ -180,10 +180,26 @@ void				ft_draw_map(t_data *data);
 
 - NALA TEXTURES -
 
-# define WALL_PATH "textures/tree.xpm"
-# define FLOOR_PATH "textures/grass.xpm"
-# define COLLECT_PATH "textures/ball.xpm"
-# define PLAYER_PATH "textures/nala.xpm"
-# define EXIT_PATH "textures/portal.xpm"
+# define WALL_PATH "textures/Nala_32x32/tree.xpm"
+# define FLOOR_PATH "textures/Nala_32x32/grass.xpm"
+# define COLLECT_PATH "textures/Nala_32x32/ball.xpm"
+# define PLAYER_PATH "textures/Nala_32x32/nala.xpm"
+# define EXIT_PATH "textures/Nala_32x32/portal.xpm"
+
+- 42 TEXTURES -
+
+# define WALL_PATH "textures/42_64x64/rock.xpm"
+# define FLOOR_PATH "textures/42_64x64/water.xpm"
+# define COLLECT_PATH "textures/42_64x64/42.xpm"
+# define PLAYER_PATH "textures/42_64x64/duck.xpm"
+# define EXIT_PATH "textures/42_64x64/blackhole.xpm"
+
+- PIRATE TEXTURES -
+
+# define WALL_PATH "textures/Pirate_64x64/water.xpm"
+# define FLOOR_PATH "textures/Pirate_64x64/wood_water.xpm"
+# define COLLECT_PATH "textures/Pirate_64x64/donut.xpm"
+# define PLAYER_PATH "textures/Pirate_64x64/pirate.xpm"
+# define EXIT_PATH "textures/Pirate_64x64/portal.xpm"
 
 */
