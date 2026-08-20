@@ -6,7 +6,7 @@
 /*   By: ruigoncalves <ruigoncalves@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:15:50 by randrade          #+#    #+#             */
-/*   Updated: 2026/08/20 15:17:27 by ruigoncalve      ###   ########.fr       */
+/*   Updated: 2026/08/20 15:28:12 by ruigoncalve      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,29 @@
 # define ERROR_LOAD_IMAGE_M "Error\nDescription: Failed to load image!\n"
 # define LARGE_MAP_M "Error\nDescription: Map too large!\n"
 
-# define WALL_PATH "textures/42_64x64/rock.xpm"
-# define FLOOR_PATH "textures/42_64x64/water.xpm"
-# define COLLECT_PATH "textures/42_64x64/42.xpm"
-# define PLAYER_PATH "textures/42_64x64/duck.xpm"
-# define EXIT_PATH "textures/42_64x64/blackhole.xpm"
+/* - NALA TEXTURES - */
+
+# define WALL_PATH "textures/Nala_64x64/tree.xpm"
+# define FLOOR_PATH "textures/Nala_64x64/grass.xpm"
+# define COLLECT_PATH "textures/Nala_64x64/ball.xpm"
+# define PLAYER_PATH "textures/Nala_64x64/nala.xpm"
+# define EXIT_PATH "textures/Nala_64x64/portal.xpm"
+
+/* - 42 TEXTURES - */
+
+// # define WALL_PATH "textures/42_64x64/rock.xpm"
+// # define FLOOR_PATH "textures/42_64x64/water.xpm"
+// # define COLLECT_PATH "textures/42_64x64/42.xpm"
+// # define PLAYER_PATH "textures/42_64x64/duck.xpm"
+// # define EXIT_PATH "textures/42_64x64/blackhole.xpm"
+
+/* - PIRATE TEXTURES - */
+
+// # define WALL_PATH "textures/Pirate_64x64/water.xpm"
+// # define FLOOR_PATH "textures/Pirate_64x64/wood_water.xpm"
+// # define COLLECT_PATH "textures/Pirate_64x64/donut.xpm"
+// # define PLAYER_PATH "textures/Pirate_64x64/pirate.xpm"
+// # define EXIT_PATH "textures/Pirate_64x64/portal.xpm"
 
 # define IMG_RES 64
 
@@ -181,31 +199,3 @@ void				ft_mlx_get_screen_size(void *mlx_ptr, int *screen_x,
 						int *screen_y);
 
 #endif
-
-/*
-
-- NALA TEXTURES -
-
-# define WALL_PATH "textures/Nala_64x64/tree.xpm"
-# define FLOOR_PATH "textures/Nala_64x64/grass.xpm"
-# define COLLECT_PATH "textures/Nala_64x64/ball.xpm"
-# define PLAYER_PATH "textures/Nala_64x64/nala.xpm"
-# define EXIT_PATH "textures/Nala_64x64/portal.xpm"
-
-- 42 TEXTURES -
-
-# define WALL_PATH "textures/42_64x64/rock.xpm"
-# define FLOOR_PATH "textures/42_64x64/water.xpm"
-# define COLLECT_PATH "textures/42_64x64/42.xpm"
-# define PLAYER_PATH "textures/42_64x64/duck.xpm"
-# define EXIT_PATH "textures/42_64x64/blackhole.xpm"
-
-- PIRATE TEXTURES -
-
-# define WALL_PATH "textures/Pirate_64x64/water.xpm"
-# define FLOOR_PATH "textures/Pirate_64x64/wood_water.xpm"
-# define COLLECT_PATH "textures/Pirate_64x64/donut.xpm"
-# define PLAYER_PATH "textures/Pirate_64x64/pirate.xpm"
-# define EXIT_PATH "textures/Pirate_64x64/portal.xpm"
-
-*/
