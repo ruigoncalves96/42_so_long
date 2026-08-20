@@ -205,10 +205,7 @@ so_long/
 - **Texture paths are relative to the working directory**, so running the binary from
   anywhere other than the repository root fails to load images.
 - **`IMG_RES` is not tied to the active theme.** It is a fixed `64`, but it is used as
-  both the window-sizing factor and the blit pitch — so with the 32×32 Nala set every
-  tile is drawn into the top-left quarter of a 64-pixel cell, leaving gaps, and the
-  window comes out twice the size the art needs. Switching to Nala also means setting
-  `IMG_RES` to `32`.
+  both the window-sizing factor and the blit pitch.
 - **Two of the three tile sets are always unused.** The subject forbids turning in
   unused files, and the theme is picked by editing five `#define`s rather than by a
   build flag.
