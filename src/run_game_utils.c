@@ -40,7 +40,7 @@ void	ft_check_screen_map_size(t_data *data)
 	int	screen_x;
 	int	screen_y;
 
-	mlx_get_screen_size(data->mlx.init, &screen_x, &screen_y);
+	ft_mlx_get_screen_size(data->mlx.init, &screen_x, &screen_y);
 	if (screen_x < ((int)data->map_info.size.x * IMG_RES)
 		|| screen_y < ((int)data->map_info.size.y * IMG_RES))
 		ft_size_map_error(data);

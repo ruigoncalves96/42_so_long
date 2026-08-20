@@ -25,14 +25,14 @@ void	ft_image_error(t_data *data)
 		mlx_destroy_image(data->mlx.init, data->wall.img);
 	if (data->floor.img != NULL)
 		mlx_destroy_image(data->mlx.init, data->floor.img);
-	mlx_destroy_display(data->mlx.init);
+	ft_mlx_destroy_display(data->mlx.init);
 	free(data->mlx.init);
 	ft_fderror_free_exit(ERROR_LOAD_IMAGE_M, (char **)data->map);
 }
 
 void	ft_size_map_error(t_data *data)
 {
-	mlx_destroy_display(data->mlx.init);
+	ft_mlx_destroy_display(data->mlx.init);
 	free(data->mlx.init);
 	ft_fderror_free_exit(LARGE_MAP_M, (char **)data->map);
 }
@@ -48,7 +48,7 @@ int	ft_close_game(t_data *data)
 	mlx_destroy_image(data->mlx.init, data->exit.img.img);
 	mlx_destroy_image(data->mlx.init, data->wall.img);
 	mlx_destroy_image(data->mlx.init, data->floor.img);
-	mlx_destroy_display(data->mlx.init);
+	ft_mlx_destroy_display(data->mlx.init);
 	free(data->mlx.init);
 	exit (0);
 	return (0);

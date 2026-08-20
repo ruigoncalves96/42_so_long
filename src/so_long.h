@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: randrade <randrade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruigoncalves <ruigoncalves@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:15:50 by randrade          #+#    #+#             */
-/*   Updated: 2024/11/08 13:29:36 by randrade         ###   ########.fr       */
+/*   Updated: 2026/08/20 15:17:27 by ruigoncalve      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,14 @@
 # include "../Library/libft/libft.h"
 # include "../Library/ft_printf/ft_printf.h"
 # include "../Library/get_next_line/get_next_line.h"
-# include "../minilibx/mlx_linux/mlx.h"
+# ifdef SO_LONG_MAC
+#  include "../minilibx/mlx/mlx.h"
+# else
+#  include "../minilibx/mlx_linux/mlx.h"
+# endif
 # include <stdbool.h>
 # include <string.h>
+# include <limits.h>
 
 # define WRONG_FORMAT_M "Error\nDescription: Wrong format!\n"
 # define NOT_BER_M "Error\nDescription: Not a *.ber file!\n"
@@ -38,15 +43,27 @@
 
 # define IMG_RES 64
 
-# define ESC 65307
-# define LEFT_A 97
-# define RIGHT_D 100
-# define DOWN_S 115
-# define UP_W 119
-# define LEFT_ARROW 65361
-# define RIGHT_ARROW 65363
-# define DOWN_ARROW 65364
-# define UP_ARROW 65362
+# ifdef SO_LONG_MAC
+#  define ESC 53
+#  define LEFT_A 0
+#  define RIGHT_D 2
+#  define DOWN_S 1
+#  define UP_W 13
+#  define LEFT_ARROW 123
+#  define RIGHT_ARROW 124
+#  define DOWN_ARROW 125
+#  define UP_ARROW 126
+# else
+#  define ESC 65307
+#  define LEFT_A 97
+#  define RIGHT_D 100
+#  define DOWN_S 115
+#  define UP_W 119
+#  define LEFT_ARROW 65361
+#  define RIGHT_ARROW 65363
+#  define DOWN_ARROW 65364
+#  define UP_ARROW 65362
+# endif
 
 # define MAX_MOVES 4294967295
 
@@ -158,33 +175,22 @@ int					ft_key_handler(int keycode, t_data *data);
 //	DRAW_MAP
 void				ft_draw_map(t_data *data);
 
+//	MLX_COMPAT
+void				ft_mlx_destroy_display(void *mlx_ptr);
+void				ft_mlx_get_screen_size(void *mlx_ptr, int *screen_x,
+						int *screen_y);
+
 #endif
 
 /*
- 
-- INCLUDE MAC -
-
-# include "../minilibx/mlx/mlx.h"
-
-- KEYS FOR MAC -
-
-# define ESC 53
-# define LEFT_A 0
-# define RIGHT_D 2
-# define DOWN_S 1
-# define UP_W 13
-# define LEFT_ARROW 123
-# define RIGHT_ARROW 124
-# define DOWN_ARROW 125
-# define UP_ARROW 126
 
 - NALA TEXTURES -
 
-# define WALL_PATH "textures/Nala_32x32/tree.xpm"
-# define FLOOR_PATH "textures/Nala_32x32/grass.xpm"
-# define COLLECT_PATH "textures/Nala_32x32/ball.xpm"
-# define PLAYER_PATH "textures/Nala_32x32/nala.xpm"
-# define EXIT_PATH "textures/Nala_32x32/portal.xpm"
+# define WALL_PATH "textures/Nala_64x64/tree.xpm"
+# define FLOOR_PATH "textures/Nala_64x64/grass.xpm"
+# define COLLECT_PATH "textures/Nala_64x64/ball.xpm"
+# define PLAYER_PATH "textures/Nala_64x64/nala.xpm"
+# define EXIT_PATH "textures/Nala_64x64/portal.xpm"
 
 - 42 TEXTURES -
 

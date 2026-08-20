@@ -17,11 +17,12 @@ unsigned int	ft_flood_fill(char **map, t_map_info *map_info,
 {
 	unsigned int	collectibles;
 
+	if (y >= map_info->size.y || x >= map_info->size.x)
+		return (0);
 	collectibles = 0;
 	if (map[y][x] == 'E')
 		map_info->exit_reached = true;
-	if (x >= map_info->size.x || x < 0 || y >= map_info->size.y || y < 0
-		|| (map[y][x] != '0' && map[y][x] != 'C' && map[y][x] != 'P'))
+	if (map[y][x] != '0' && map[y][x] != 'C' && map[y][x] != 'P')
 		return (collectibles);
 	if (map[y][x] == 'C')
 		collectibles++;
